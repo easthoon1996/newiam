@@ -17,13 +17,15 @@ public class Privilege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name; // 예: READ_USER, WRITE_ROLE
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    public Privilege() {}
 
     public Privilege(String name) {
+        this.name = name;
     }
 
-    public Privilege() {
-
-    }
+    // getter, setter 생략
 }
+

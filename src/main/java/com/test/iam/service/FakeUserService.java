@@ -42,7 +42,10 @@ public class FakeUserService {
 
         for (String name : privilegeNames) {
             Privilege p = privilegeRepository.findByName(name)
-                    .orElseGet(() -> privilegeRepository.save(new Privilege(name)));
+                    .orElseGet(() -> {
+                        Privilege newPrivilege = new Privilege(name); // ✅ name 설정 필수
+                        return privilegeRepository.save(newPrivilege);
+                    });
             allPrivileges.add(p);
         }
 
@@ -103,3 +106,4 @@ public class FakeUserService {
         }
     }
 }
+
